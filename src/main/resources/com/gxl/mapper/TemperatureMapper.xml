@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gxl.mapper.TemperatureMapper" >
+  <resultMap id="BaseResultMap" type="com.gxl.entity.Temperature">
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="centigrade" property="centigrade" jdbcType="FLOAT" />
+    <result column="fahrenheit" property="fahrenheit" jdbcType="FLOAT" />
+    <result column="created_at" property="createdAt" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, centigrade, fahrenheit, created_at
+  </sql>
+
+  <select id="selectOne" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from temperature
+    order by created_at desc
+    limit 1
+  </select>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from temperature
+    order by created_at desc
+    limit 10
+  </select>
+
+</mapper>

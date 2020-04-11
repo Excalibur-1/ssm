@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gxl.mapper.PersonMapper" >
+  <select id="selectByPrimaryKey" resultType="com.gxl.entity.Person" parameterType="java.lang.Integer" >
+    select * from person where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultType="com.gxl.entity.Person">
+    select p.id, p.sex, p.country, p.classmate_id as classmateId from person p limit 20
+  </select>
+  <select id="selectPersonVO" resultType="com.gxl.entity.vo.PersonVO">
+    select p.id, p.sex, p.country, c.name, c.age
+    from person p
+    inner join classmate c on p.classmate_id = c.id limit 20
+  </select>
+</mapper>
